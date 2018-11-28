@@ -3,8 +3,20 @@ var express = require('express');//richiamo del modulo express
 var router = express.Router()//modulo express e funzione di router di express
 
 var controller = require('./controller');
+
+
 //lista di tutti i film
 router.get('/', controller.getAll);
-router.get('/:id', controller.getOne);
+//un solo film per id
+router.get('/:id([0-9]{1,4})', controller.getOne);//* qualsiasi {1,4} da 1 a 4
+//router.get('/:crea', controller.createFilm); è sono una prova per differenziare le rotte nel caso ci siano problemi, ricoradti la lezuine e cosa ha detto paolo
+//creazione di un film
+router.post('/', controller.createFilm);//se scrive ,
+//modifica di un fil
+router.put('/:id([0-9]{1,4})', controller.modificaFilm);
+//eliminazione di un film
+router.put('/voto/:id([0-9]{1,4})', controller.votaFilm);
+//voto di un film
+router.delete('/:id([0-9]{1,1})', controller.eliminaFilm)
 
 module.exports = router;//senza questo export nel file  routers non parte app.use
