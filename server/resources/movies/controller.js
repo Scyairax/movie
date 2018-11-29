@@ -7,15 +7,50 @@ module.exports = (function () {
         res.json("hai cambiato il nome " + idfilm)
     }
 
-
     var getOne = (req, res) => {
-        var id = req.params.id;//id è il parametro passato movie nella rotta corretta
-        res.json("film con id: " + id)                    //rechiesta del parametro id nel url
+        var onefilm = movie.findById((req.params.id),"anno")//cosi mi ritorna per forza il titolo, o l'anno
+        .exec()
+        .then(function (movie) {
+            console.log(movie);
+            res.json(movie);
+        })
+        .catch(function (err) {
+            throw err;
+    });                   //rechiesta del parametro id nel url
     }
 
     var getAll = (req, res) => {
-        res.json("lista di tutti i film");
+        var query = movie.find()//http://localhost:3000/movies/?anno=2017 questa è la query string
+        if (req.query.anno) {
+            query.where('anno').equals(req.query.anno)
+        }
+        query
+            .exec()
+            .then(function (movie) {
+                console.log(movie);
+                res.json(movie);
+            })
+            .catch(function (err) {
+                res.json(err)
+                throw err;
+            });
+
+
     }
+
+
+
+  //  var getAll = (req, res) => {
+   //     var query = movie.find()
+   //     .exec()
+   //      .then(function (movie) {
+    //         console.log(movie);
+    //         res.json(movie);
+   // })
+  //  .catch(function (err) {
+      //  throw err;
+//});
+ //}   
 
    var votaFilm = (req, res) => {
        var idfilm = req.params.idfilm;
@@ -32,9 +67,35 @@ module.exports = (function () {
     }
 
     var eliminaFilm = (req, res) => {
-       var idfilm = req.params.id;
-       req.json("hai cancellato il film con id " + idfilm)
+      // var idfilm = req.params.id;
+        //req.json("hai cancellato il film con id " + id)
+        movie.findById(req.params.id)
+        .exec()
+        .then(function (movie) {
+            return movie.remove();
+        })
+        .then(function () {
+            console.log('il film è stato rimosso');
+        })
+        .catch(function (err) {
+            throw err;
+    });
+
+
+
+
     }
+
+  
+
+
+
+
+
+
+
+
+    
     return {
         
         getAll: getAll,
