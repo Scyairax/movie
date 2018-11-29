@@ -37,7 +37,11 @@ var filmSchema = new mongoose.Schema({
     attori: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Attore"
-    }]
+    }],
+    locandina:{
+        type: String,
+        default: "/images/attore.jpg"
+    }
 
 })
 
