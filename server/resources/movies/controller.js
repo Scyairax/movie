@@ -1,6 +1,6 @@
 module.exports = (function () {
   
-   
+   var movie = require("./movie")
 
     var modificaFilm = (req, res) => {
         var idfilm = req.params.id
@@ -24,9 +24,11 @@ module.exports = (function () {
     }
     
     var createFilm = (req, res) => {
-        var crea = req.body;
-        console.log(crea);
-        res.json("rotta per creare un film" + crea);
+        var creafilm = new movie(req.body);
+        console.log(creafilm);
+        creafilm.save().then(data => res.json(data))
+        .catch(err => res.json(err))
+        //res.json("rotta per creare un film" + creafilm);
     }
 
     var eliminaFilm = (req, res) => {
