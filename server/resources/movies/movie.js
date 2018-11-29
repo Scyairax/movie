@@ -33,7 +33,11 @@ var filmSchema = new mongoose.Schema({
     dataRegistrazione: {
         type: Date,
         
-    }
+    },
+    attori: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Attore"
+    }]
 
 })
 

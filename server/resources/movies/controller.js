@@ -1,6 +1,7 @@
 module.exports = (function () {
   
-   var movie = require("./movie")
+    var movie = require("./movie")
+    var attore = require("../attori/Attore")
 
     var modificaFilm = (req, res) => {
         var idfilm = req.params.id
@@ -35,6 +36,7 @@ module.exports = (function () {
             query.where('genere').in(generi)
         }
         query
+            .populate("attori")//questo attori è la colonnna degli attori dentro il nostro document
             .exec()
             .then(function (movie) {
                 console.log(movie);
