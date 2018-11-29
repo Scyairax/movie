@@ -36,7 +36,13 @@ module.exports = (function () {
             query.where('genere').in(generi)
         }
         query
-            .populate("attori")//questo attori è la colonnna degli attori dentro il nostro document
+           // .populate("attori")//questo attori è la colonnna degli attori dentro il nostro document
+                                 //oppure se può personalizzare il populate- guarda le slide
+                 .populate({
+                  path: 'attori',//colonna della tabella film
+                   match: { eta: { $gte: 40 }},//condizione del populate
+                   select: ['nome','cognome','eta'],//dati che desidero
+                })  
             .exec()
             .then(function (movie) {
                 console.log(movie);

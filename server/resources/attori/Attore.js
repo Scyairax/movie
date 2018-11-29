@@ -21,6 +21,9 @@ var attoreSchema = new mongoose.Schema({
         lowercase: true,//trasforma il lower case
         uppercase: false,//sta su false quindi non va questo
         trim: true//uniforma il testo se scritto un po alla cazzo di cane
+    },
+    eta: {
+        type:Number
     }
 
 })
