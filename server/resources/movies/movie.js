@@ -30,15 +30,10 @@ var filmSchema = new mongoose.Schema({
         type: String,
         enum: ["horror","drammatico","comico","thriller","commedia"]
     }],
-    data: {
+    dataRegistrazione: {
         type: Date,
         
     }
-   
-
-
-
-
 
 })
 
