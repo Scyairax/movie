@@ -47,7 +47,6 @@ module.exports = (function () {
     }
 
 
-
   //  var getAll = (req, res) => {
    //     var query = movie.find()
    //     .exec()
@@ -61,17 +60,19 @@ module.exports = (function () {
  //}   
 
    var votaFilm = (req, res) => {
-       var idfilm = req.params.idfilm;
+       var id = req.params.id;
        var voto = req.body.voto;
-    res.json("il voto dato è" + voto);
+      //chiedere ad ivan il voto
+       res.json("il voto dato è" + voto);  
     }
     
     var createFilm = (req, res) => {
         var creafilm = new movie(req.body);
         console.log(creafilm);
-        creafilm.save().then(data => res.json(data))
-        .catch(err => res.json(err))
-        //res.json("rotta per creare un film" + creafilm);
+        console.log(req.body);
+         creafilm.save().then(data => res.json(data))
+         .catch(err => res.json(err))
+     //   res.json("hai creato il film  " + creafilm);
     }
 
   //  var eliminaFilm = (req, res) => {
