@@ -44,8 +44,6 @@ module.exports = (function () {
                 res.json(err)
                 throw err;
             });
-
-
     }
 
 
@@ -76,36 +74,39 @@ module.exports = (function () {
         //res.json("rotta per creare un film" + creafilm);
     }
 
+  //  var eliminaFilm = (req, res) => {
+      // var idfilm = req.params.id; non le usare
+        //req.json("hai cancellato il film con id " + id) non le usare
+   //     movie.findById(req.params.id)
+   //     .exec()
+    //    .then(function (movie) {
+   //         return movie.remove();
+   //     })
+   //     .then(function () {
+   //         console.log('il film è stato rimosso');
+    //    })
+    //    .catch(function (err) {
+   //         throw err;
+   // });
+  //  }
+
     var eliminaFilm = (req, res) => {
-      // var idfilm = req.params.id;
-        //req.json("hai cancellato il film con id " + id)
-        movie.findById(req.params.id)
+        movie.findOne(req.params.titolo)
         .exec()
         .then(function (movie) {
-            return movie.remove();
-        })
-        .then(function () {
-            console.log('il film è stato rimosso');
-        })
-        .catch(function (err) {
-            throw err;
-    });
+          return movie.remove();
+            })
+         .then(function (data) {//questo then restituisce con quello eliminato poiche la concatenazione dei then mantiene il costesto
+        console.log('hai rimosso il film'+ data);//http://localhost:3000/movies/?titolo=spiderman2 verdo delete
+         })
+         .catch(function (err) {
+         throw err;
+        });
+        }
 
 
 
 
-    }
-
-  
-
-
-
-
-
-
-
-
-    
     return {
         
         getAll: getAll,

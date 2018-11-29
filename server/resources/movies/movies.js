@@ -17,6 +17,7 @@ router.put('/:id([a-z0-9]{24})', controller.modificaFilm);
 //eliminazione di un film
 router.put('/voto/:id([a-z0-9]{24})', controller.votaFilm);
 //voto di un film
-router.delete('/:id([a-z0-9]{24})', controller.eliminaFilm)
+//router.delete('/:id([a-z0-9]{24})', controller.eliminaFilm) cosi funzione solo con un id
+router.delete('/', controller.eliminaFilm)//cosi funzione solo per tutto
 
 module.exports = router;//senza questo export nel file  routers non parte app.use
