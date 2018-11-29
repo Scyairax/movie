@@ -24,6 +24,16 @@ module.exports = (function () {
         if (req.query.anno) {
             query.where('anno').equals(req.query.anno)
         }
+        if (req.query.votomin) {
+            query.where('voto').gt(req.query.votomin)//http://localhost:3000/movies/?votomin=3&?votomax=9
+        }
+        if (req.query.votomax) {
+            query.where('voto').gt(req.query.votomax)
+        }
+        if (req.query.genere) {
+            var generi = req.query.genere.split(',')
+            query.where('genere').in(generi)
+        }
         query
             .exec()
             .then(function (movie) {
