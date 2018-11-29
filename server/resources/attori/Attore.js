@@ -24,8 +24,14 @@ var attoreSchema = new mongoose.Schema({
     },
     eta: {
         type:Number
+    },
+    foto: {
+        type: String,
+        default: "https://via.placeholder.com/150 "
     }
+    
 
+    
 })
 
 module.exports = mongoose.model("Attore",attoreSchema,"attori")

@@ -41,7 +41,7 @@ module.exports = (function () {
                  .populate({
                   path: 'attori',//colonna della tabella film
                    match: { eta: { $gte: 40 }},//condizione del populate
-                   select: ['nome','cognome','eta'],//dati che desidero
+                   select: ['nome','cognome','eta','foto'],//dati che desidero
                 })  
             .exec()
             .then(function (movie) {
