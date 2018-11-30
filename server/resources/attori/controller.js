@@ -5,9 +5,13 @@ module.exports = (function () {
 
 
     var modificaAttore = (req, res) => {
-        Attore.findByIdAndUpdate_(req.params.id, req.body)
-            .then(data => res.json(data))
-        .catch(err => res.json(err))
+        var attoredata = req.body;
+        var id = req.params.id;
+
+        Attore.findByIdAndUpdate(id, attoredata)
+        .then(data => 
+        res.json(data)
+    ).catch(err => res.json(err)) 
     }
 
     var creaAttore = (req, res) => {
