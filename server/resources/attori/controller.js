@@ -3,6 +3,17 @@ module.exports = (function () {
    
     var Attore = require("./Attore")
 
+
+    var creaAttore = (req, res) => {
+        var creaattore = new Attore(req.body);
+        console.log(creaattore);
+        console.log(req.body);
+         creaattore.save().then(data => res.json(data))
+         .catch(err => res.json(err))
+     //   res.json("hai creato il film  " + creafilm);
+    }
+
+
     var getOne = (req, res) => {
         var onefilm = Attore.findById((req.params.id),"nome")//cosi mi ritorna per forza il titolo, o l'anno
         .exec()
@@ -31,7 +42,7 @@ module.exports = (function () {
     }   
     
     return {
-        
+        creaAttore:creaAttore,
         getAll: getAll,
         getOne: getOne
        
