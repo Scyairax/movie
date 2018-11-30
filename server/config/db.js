@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/themoviedb', 
+//mongoose.connect('mongodb://admin:asd123-.,@ds159073.mlab.com:59073/themoviedb', 
     { useNewUrlParser: true,
         useCreateIndex: true }, 
     err => {
