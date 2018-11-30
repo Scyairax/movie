@@ -4,6 +4,12 @@ module.exports = (function () {
     var Attore = require("./Attore")
 
 
+    var modificaAttore = (req, res) => {
+        Attore.findByIdAndUpdate_(req.params.id, req.body)
+            .then(data => res.json(data))
+        .catch(err => res.json(err))
+    }
+
     var creaAttore = (req, res) => {
         var creaattore = new Attore(req.body);
         console.log(creaattore);
@@ -42,6 +48,7 @@ module.exports = (function () {
     }   
     
     return {
+        modificaAttore:modificaAttore,
         creaAttore:creaAttore,
         getAll: getAll,
         getOne: getOne

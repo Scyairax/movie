@@ -1,11 +1,16 @@
 module.exports = (function () {
   
     var movie = require("./movie")
-    var attore = require("../attori/Attore")
+    
 
     var modificaFilm = (req, res) => {
-        var idfilm = req.params.id
-        res.json("hai cambiato il nome " + idfilm)
+        var filmdata = req.body;
+        var id = req.params.id;
+
+        movie.findByIdAndUpdate(id, filmdata)
+        .then(data => 
+        res.json(data)
+    ).catch(err => res.json(err)) 
     }
 
     var getOne = (req, res) => {

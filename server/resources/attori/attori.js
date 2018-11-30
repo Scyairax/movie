@@ -12,5 +12,6 @@ router.get('/:id([a-z0-9]{24})', controller.getOne);
 
 router.post('/', controller.creaAttore);
 
+router.put('/:id([a-z0-9]{24})', controller.modificaAttore);
 
 module.exports = router;//senza questo export nel file  routers non parte app.use
