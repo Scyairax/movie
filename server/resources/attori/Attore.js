@@ -34,4 +34,4 @@ var attoreSchema = new mongoose.Schema({
     
 })
 
-module.exports = mongoose.model("Attore",attoreSchema,"attori")
+module.exports = mongoose.model("Attore",attoreSchema,"attori")//attori è il nome della collection e se non è specificato crea il plurale in inglese dentro al db

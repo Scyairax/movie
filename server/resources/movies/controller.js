@@ -41,7 +41,7 @@ module.exports = (function () {
                  .populate({
                   path: 'attori',//colonna della tabella film
                    match: { eta: { $gte: 40 }},//condizione del populate
-                   select: ['nome','cognome','eta','foto'],//dati che desidero
+                   select: ['nome','cognome','eta','foto']//dati che desidero
                 })  
             .exec()
             .then(function (movie) {
@@ -70,8 +70,23 @@ module.exports = (function () {
    var votaFilm = (req, res) => {
        var id = req.params.id;
        var voto = req.body.voto;
-      //chiedere ad ivan il voto
-       res.json("il voto dato è" + voto);  
+       movie.findById(id).
+           exec()
+           .then(function (dato_riempito_momentaneamente) {
+               console.log(dato_riempito_momentaneamente)
+               dato_riempito_momentaneamente.mvoto += 1;
+               dato_riempito_momentaneamente.voto = (dato_riempito_momentaneamente.voto + voto) / dato_riempito_momentaneamente.mvoto;
+               return dato_riempito_momentaneamente.save();
+       })
+       .then(function (cazzo) {
+        console.log(cazzo);
+        res.json(cazzo);
+    })
+    .catch(function (err) {
+        res.json(err)
+        throw err;
+    });
+    
     }
     
     var createFilm = (req, res) => {
