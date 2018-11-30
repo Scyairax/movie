@@ -16,12 +16,18 @@ var filmSchema = new mongoose.Schema({
        max: [3000, 'Troppo vecchio per fare l\'eroe'],
        min: [1900, 'Non hai abbastanza esperienza']
     },
-    voto: {
+    votoMedio: {
         type: Number,
         default: 0,
         max: 10,
         min: 0
     },
+    votoTot: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+
     mvoto: {
         type: Number,
         default: 0,

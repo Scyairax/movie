@@ -73,9 +73,10 @@ module.exports = (function () {
        movie.findById(id).
            exec()
            .then(function (dato_riempito_momentaneamente) {
-               console.log(dato_riempito_momentaneamente)
+              console.log(dato_riempito_momentaneamente)
                dato_riempito_momentaneamente.mvoto += 1;
-               dato_riempito_momentaneamente.voto = (dato_riempito_momentaneamente.voto + voto) / dato_riempito_momentaneamente.mvoto;
+               dato_riempito_momentaneamente.votoTot += voto;
+             dato_riempito_momentaneamente.votoMedio = (dato_riempito_momentaneamente.votoTot / dato_riempito_momentaneamente.mvoto);
                return dato_riempito_momentaneamente.save();
        })
        .then(function (cazzo) {
