@@ -3,6 +3,19 @@ module.exports = (function () {
    
     var Attore = require("./Attore")
 
+    var getOne = (req, res) => {
+        var onefilm = Attore.findById((req.params.id),"nome")//cosi mi ritorna per forza il titolo, o l'anno
+        .exec()
+        .then(function (dato_momentaneo) {
+            console.log(dato_momentaneo);
+            res.json(dato_momentaneo);
+        })
+        .catch(function (err) {
+            throw err;
+    });                   //rechiesta del parametro id nel url
+    }
+
+
 
     
    var getAll = (req, res) => {
@@ -19,7 +32,8 @@ module.exports = (function () {
     
     return {
         
-        getAll: getAll
+        getAll: getAll,
+        getOne: getOne
        
     }
 
